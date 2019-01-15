@@ -1,0 +1,5 @@
+# Keep these files out of the repo
+
+node_modules
+css
+js

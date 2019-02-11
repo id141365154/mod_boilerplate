@@ -1,5 +1,11 @@
 <?php 
-
+/**
+ * @author     Victor Kulyabin <v.kulyabin@clientlab.ru>
+ * @copyright  2019 Victor Kulyabin
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version    1.0.0
+ * @link       https://github.com/clientlab/mod_boilerplate
+ */
 
 DEFINE('HTML_BLOCKS_PREFIX','css_mod__');
 DEFINE('BLOCKS_PATH','./css/blocks/');

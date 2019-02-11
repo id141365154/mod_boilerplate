@@ -14,18 +14,18 @@ var rjs = require('gulp-requirejs');
 
 
 var OPTIONS = {
-	JS_SRC : "src/js/",
-	SCSS_SRC : "src/scss/"
+	JS_SRC: "src/js/",
+	SCSS_SRC: "src/scss/"
 }
 
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
 	return gulp.src(OPTIONS.SCSS_SRC + '**/*.scss')
 		.pipe(sass())
-		.on("error", notify.onError(function (sass) {
-				console.log('sass', sass);
-		        return "Message to the notifier: " + sass.message;
-		      }))
+		.on("error", notify.onError(function(sass) {
+			console.log('sass', sass);
+			return "Message to the notifier: " + sass.message;
+		}))
 		.pipe(rename({
 			suffix: '',
 			prefix: ''
@@ -37,11 +37,11 @@ gulp.task('sass', function () {
 
 
 
-gulp.task('common_js', function () {
+gulp.task('common_js', function() {
 
 	return gulp.src(
 			[
-				//OPTIONS.JS_SRC + 'lib/**/*.js',
+				//OPTIONS.JS_SRC + 'lib/**/*.js',  // OTHER COMMON LIBS
 				OPTIONS.JS_SRC + 'common/css-mod/css-mod.js',
 				OPTIONS.JS_SRC + 'common/js-mod/js-mod.js',
 				OPTIONS.JS_SRC + 'common/common.js'
@@ -49,13 +49,13 @@ gulp.task('common_js', function () {
 		)
 		.pipe(sourcemaps.init())
 		.pipe(babel({
-            presets: ['@babel/env'],
-            highlightCode: true,
+				presets: ['@babel/env'],
+				highlightCode: true,
 
-        })
-        .on("error", notify.onError(function (error) {
-                return "Message to the notifier: " + error.message;
-              })))
+			})
+			.on("error", notify.onError(function(error) {
+				return "Message to the notifier: " + error.message;
+			})))
 		.pipe(concat('common.min.js'))
 		.pipe(uglify({
 			compress: {
@@ -68,7 +68,7 @@ gulp.task('common_js', function () {
 
 
 
-gulp.task('blocks_js', function () {
+gulp.task('blocks_js', function() {
 
 	return gulp.src(
 			[
@@ -77,13 +77,13 @@ gulp.task('blocks_js', function () {
 		)
 		.pipe(sourcemaps.init())
 		.pipe(babel({
-            presets: ['@babel/env'],
-            highlightCode: true,
+				presets: ['@babel/env'],
+				highlightCode: true,
 
-        })
-        .on("error", notify.onError(function (error) {
-                return "Message to the notifier: " + error.message;
-              })))
+			})
+			.on("error", notify.onError(function(error) {
+				return "Message to the notifier: " + error.message;
+			})))
 		//.pipe(concat('main.min.js'))
 		.pipe(uglify({
 			compress: {
@@ -94,7 +94,7 @@ gulp.task('blocks_js', function () {
 		.pipe(gulp.dest('js/blocks'));
 });
 
-gulp.task('lib_js', function () {
+gulp.task('lib_js', function() {
 
 	return gulp.src(
 			[
@@ -120,7 +120,7 @@ gulp.task('lib_js', function () {
 		.pipe(gulp.dest('js/lib'));
 });
 
-gulp.task('watch', ['sass', 'common_js', 'lib_js',  'blocks_js'], function () {
+gulp.task('watch', ['sass', 'common_js', 'lib_js', 'blocks_js'], function() {
 	gulp.watch(OPTIONS.SCSS_SRC + '**/*.scss', ['sass']);
 	gulp.watch(OPTIONS.JS_SRC + '**/*.js', ['common_js', 'lib_js', 'blocks_js']);
 });
